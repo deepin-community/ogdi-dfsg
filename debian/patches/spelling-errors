@@ -1,0 +1,17 @@
+Description: Fix spelling errors.
+ occured -> occurred
+Author: Bas Couwenberg <sebastic@debian.org>
+Forwarded: https://github.com/libogdi/ogdi/pull/19
+Applied-Upstream: https://github.com/libogdi/ogdi/commit/4c8178383e851963db7685f3fd01ec7187c1aa5d
+
+--- a/ogdi/c-api/server.c
++++ b/ogdi/c-api/server.c
+@@ -292,7 +292,7 @@ ecs_Result *svr_CreateServer(s,url,isLoc
+   res = s->createserver(s,url); 
+   if (res == NULL) {
+     res = &svr_dummy_result;
+-    sprintf(buffer,"A memory error occured when creating the server for the URL \"%s\"", url);
++    sprintf(buffer,"A memory error occurred when creating the server for the URL \"%s\"", url);
+     ecs_SetError(res,1,buffer);
+     return res;
+     }

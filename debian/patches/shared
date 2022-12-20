@@ -1,0 +1,71 @@
+Description: Use SHRDGEN target on Linux arch instead of default DYNAGEN.
+ It would be better changing the building system in order to
+ generate both shared and static libraries.
+ Also changed a bit SHRDGEN target to generate standard sonames/solibs.
+ Note that upstream follows a soname libogdi.so.MAJOR.MINOR scheme.
+Author: Francesco Paolo Lovergine <frankie@debian.org>
+Forwarded: not-needed
+
+--- a/config/unix.mak
++++ b/config/unix.mak
+@@ -22,9 +22,9 @@ UNIX_DEFINE	= -Dunix
+ #
+ # Standard tools
+ #
+-CC		= ${AUTOCONF_CC}
++CC		= ${AUTOCONF_CC} -shared -fPIC
+ LD		= ${AUTOCONF_CC}
+-SHLIB_LD	= ${AUTOCONF_CC}
++SHLIB_LD	= ${AUTOCONF_CC} -shared -fPIC
+ AR		= ar cr
+ RM		= rm
+ RMALL		= rm -rf
+@@ -93,9 +93,9 @@ $(PROGGEN): $(OBJECTS)
+ 
+ $(SHRDGEN): $(OBJECTS)
+ 	@echo Making shared library: $@
+-	$(SHLIB_LD) $(SHLIB_LDFLAGS) $(COMMON_LDFLAGS) $(COMMON_CFLAGS) -Wl,-soname,$(LIB_PREFIX)$(TOBEGEN).$(SHLIB_EXT).$(OGDI_MAJOR) -o $@ $^ $(LINK_LIBS) 
+-	cd $(TOPDIR)/bin/$(TARGET); ln -s $(LIB_PREFIX)$(TOBEGEN).$(SHLIB_EXT).$(OGDI_MAJOR).$(OGDI_MINOR) $(LIB_PREFIX)$(TOBEGEN).$(SHLIB_EXT); \
+-	ln -s $(LIB_PREFIX)$(TOBEGEN).$(SHLIB_EXT).$(OGDI_MAJOR).$(OGDI_MINOR) $(LIB_PREFIX)$(TOBEGEN).$(SHLIB_EXT).$(OGDI_MAJOR); cd $(CURDIR)
++	$(SHLIB_LD) $(SHLIB_LDFLAGS) $(COMMON_LDFLAGS) $(COMMON_CFLAGS) -Wl,-soname,$(LIB_PREFIX)$(TOBEGEN).$(SHLIB_EXT).$(OGDI_MAJOR).$(OGDI_MINOR) -o $(TOPDIR)/bin/$(TARGET)/$(LIB_PREFIX)$(TOBEGEN).$(SHLIB_EXT).$(OGDI_MAJOR).$(OGDI_MINOR) $^ $(LINK_LIBS) 
++	cd $(TOPDIR)/bin/$(TARGET); ln -s $(LIB_PREFIX)$(TOBEGEN).$(SHLIB_EXT).$(OGDI_MAJOR).$(OGDI_MINOR) $(LIB_PREFIX)$(TOBEGEN).$(SHLIB_EXT).$(OGDI_MAJOR); \
++	ln -s $(LIB_PREFIX)$(TOBEGEN).$(SHLIB_EXT).$(OGDI_MAJOR) $(LIB_PREFIX)$(TOBEGEN).$(SHLIB_EXT); cd $(CURDIR)
+ 	@echo $@ made successfully ...
+ 
+ $(DYNAGEN): $(OBJECTS)
+--- a/contrib/makefile
++++ b/contrib/makefile
+@@ -16,7 +16,7 @@ include $(TOPDIR)/config/common.mak
+ #
+ # Sub-directories that need to be built
+ #
+-subdirs	= ogdi_import ogdi_info
++subdirs	= ogdi_import ogdi_info gdal
+ 
+ #
+ # Default target to build everything in all sub-directories
+--- a/ogdi/c-api/makefile
++++ b/ogdi/c-api/makefile
+@@ -13,11 +13,7 @@
+ 
+ TOBEGEN	= ogdi
+ 
+-ifeq ($(TARGET),Linux)
+ TARGETGEN=$(SHRDGEN)
+-else
+-TARGETGEN=$(DYNAGEN)
+-endif
+ 
+ SOURCES = ecs_dyna.c ecssplit.c \
+           ecsassoc.c ecstile.c server.c ecsdist.c \
+--- a/vpflib/makefile
++++ b/vpflib/makefile
+@@ -7,7 +7,7 @@
+ #
+ 
+ TOBEGEN	= vpf
+-TARGETGEN=$(ARCHGEN)
++TARGETGEN=$(SHRDGEN)
+ 
+ SOURCES = vpfselec.c \
+ 	vpftidx.c \

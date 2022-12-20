@@ -1,0 +1,3 @@
+usr/lib/libogdi.so.*
+usr/lib/libvpf.so.*
+usr/lib/ogdi/*.so	usr/lib/ogdi/4.1

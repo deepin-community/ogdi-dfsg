@@ -1,0 +1,5 @@
+usr/lib/lib*.so
+usr/include/ecs.h      usr/include/ogdi
+usr/include/ecs_util.h usr/include/ogdi
+ogdi-config            usr/bin/
+ogdi.pc                usr/share/pkgconfig/

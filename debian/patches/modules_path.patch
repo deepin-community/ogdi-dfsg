@@ -1,0 +1,15 @@
+Description: Don't include package build path in MODULES_PATH.
+Author: Bas Couwenberg <sebastic@debian.org>
+Forwarded: not-needed
+
+--- a/ogdi/c-api/makefile
++++ b/ogdi/c-api/makefile
+@@ -24,7 +24,7 @@ INCLUDES = $(CURRENT_INCLUDE) $(GENERAL_
+ 		$(GRASS_INCLUDE) $(ZLIB_INCLUDE) \
+ 		$(EXPAT_INCLUDE)
+ 
+-CFLAGS 	= $(INCLUDES) $(COMMON_CFLAGS) -DMODULES_PATH="\"$(INST_LIB)/ogdi/\""
++CFLAGS 	= $(INCLUDES) $(COMMON_CFLAGS) -DMODULES_PATH="\"/usr/lib/ogdi/4.1/\""
+ 
+ LINK_LIBS= $(RPC_LINKLIB) $(ZLIB_LINKLIB) $(EXPAT_LINKLIB) $(WIN_LINKLIB) \
+ 		$(MATH_LINKLIB)

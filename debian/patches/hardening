@@ -1,0 +1,30 @@
+Description: Include hardening buidflags from the environment.
+Author: Bas Couwenberg <sebastic@debian.org>
+Forwarded: https://github.com/libogdi/ogdi/pull/18
+Applied-Upstream: https://github.com/libogdi/ogdi/commit/408d7fb49de714aa0f5833ed4bb40404bee3e6bd
+
+--- a/config/unix.mak
++++ b/config/unix.mak
+@@ -88,19 +88,19 @@ $(ARCHGEN): $(OBJECTS)
+ 
+ $(PROGGEN): $(OBJECTS)
+ 	@echo Making executable: $@
+-	$(LD) $(COMMON_LDFLAGS) $(COMMON_CFLAGS) -o $@ $^ $(LINK_LIBS)
++	$(LD) $(COMMON_LDFLAGS) $(LDFLAGS) $(COMMON_CFLAGS) -o $@ $^ $(LINK_LIBS)
+ 	@echo $@ made successfully ...
+ 
+ $(SHRDGEN): $(OBJECTS)
+ 	@echo Making shared library: $@
+-	$(SHLIB_LD) $(SHLIB_LDFLAGS) $(COMMON_LDFLAGS) $(COMMON_CFLAGS) -Wl,-soname,$(LIB_PREFIX)$(TOBEGEN).$(SHLIB_EXT).$(OGDI_MAJOR).$(OGDI_MINOR) -o $(TOPDIR)/bin/$(TARGET)/$(LIB_PREFIX)$(TOBEGEN).$(SHLIB_EXT).$(OGDI_MAJOR).$(OGDI_MINOR) $^ $(LINK_LIBS) 
++	$(SHLIB_LD) $(SHLIB_LDFLAGS) $(COMMON_LDFLAGS) $(LDFLAGS) $(COMMON_CFLAGS) -Wl,-soname,$(LIB_PREFIX)$(TOBEGEN).$(SHLIB_EXT).$(OGDI_MAJOR).$(OGDI_MINOR) -o $(TOPDIR)/bin/$(TARGET)/$(LIB_PREFIX)$(TOBEGEN).$(SHLIB_EXT).$(OGDI_MAJOR).$(OGDI_MINOR) $^ $(LINK_LIBS) 
+ 	cd $(TOPDIR)/bin/$(TARGET); ln -s $(LIB_PREFIX)$(TOBEGEN).$(SHLIB_EXT).$(OGDI_MAJOR).$(OGDI_MINOR) $(LIB_PREFIX)$(TOBEGEN).$(SHLIB_EXT).$(OGDI_MAJOR); \
+ 	ln -s $(LIB_PREFIX)$(TOBEGEN).$(SHLIB_EXT).$(OGDI_MAJOR) $(LIB_PREFIX)$(TOBEGEN).$(SHLIB_EXT); cd $(CURDIR)
+ 	@echo $@ made successfully ...
+ 
+ $(DYNAGEN): $(OBJECTS)
+ 	@echo Making dynamic library: $@
+-	$(SHLIB_LD) $(SHLIB_LDFLAGS) $(COMMON_LDFLAGS) $(COMMON_CFLAGS) -o $@ $^ $(LINK_LIBS) 
++	$(SHLIB_LD) $(SHLIB_LDFLAGS) $(COMMON_LDFLAGS) $(LDFLAGS) $(COMMON_CFLAGS) -o $@ $^ $(LINK_LIBS) 
+ 	@echo $@ made successfully ...
+ 
+ 

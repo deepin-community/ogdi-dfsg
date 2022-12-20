@@ -1,0 +1,54 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+# Enable hardening build flags
+export DEB_BUILD_MAINT_OPTIONS=hardening=+all
+
+export TOPDIR=$(CURDIR)
+export CFG=debug
+
+# Don't treat format-security as an error, caused build failure.
+# Also link libm for cos() and related functions.
+export DEB_CFLAGS_MAINT_APPEND=-Wno-error=format-security -lm -DNDEBUG
+
+include /usr/share/dpkg/pkg-info.mk
+
+UPSTREAM_VERSION = $(shell echo $(DEB_VERSION_UPSTREAM) | sed -e 's/\+.*//')
+
+%:
+	dh $@
+
+override_dh_auto_clean:
+	if [ -e config/common.mak ]; then \
+		dh_auto_clean ; \
+	fi
+
+override_dh_auto_configure:
+	dh_auto_configure -- \
+		 --libdir=$(CURDIR)/debian/tmp/usr/lib \
+		 --with-expat=yes \
+		 --with-expatinc=/usr/include \
+		 --with-expatlib=-lexpat \
+		 --with-zlib=yes \
+		 --with-zlibinc=/usr/include \
+		 --with-zliblib=-lz
+
+override_dh_auto_build:
+	dh_auto_build --max-parallel=1
+
+override_dh_auto_install:
+	dh_auto_install -- prefix=$(CURDIR)/debian/tmp/usr
+
+	$(RM) $(CURDIR)/debian/tmp/usr/lib/ogdi/libskeleton.so
+
+override_dh_install:
+	dh_install --list-missing
+	sed -i -e 's@$(CURDIR)/debian/tmp@@g' \
+		debian/*/usr/bin/ogdi-config \
+		debian/*/usr/share/pkgconfig/ogdi.pc
+
+override_dh_makeshlibs:
+	dh_makeshlibs -- -v$(UPSTREAM_VERSION)

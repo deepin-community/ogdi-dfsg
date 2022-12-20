@@ -1,0 +1,66 @@
+Source: ogdi-dfsg
+Maintainer: Debian GIS Project <pkg-grass-devel@lists.alioth.debian.org>
+Uploaders: Francesco Paolo Lovergine <frankie@debian.org>
+Section: libs
+Priority: optional
+Build-Depends: debhelper (>= 10~),
+               libexpat1-dev,
+               pkg-config,
+               tcl-dev (>= 8.4),
+               zlib1g-dev
+Standards-Version: 4.5.1
+Vcs-Browser: https://salsa.debian.org/debian-gis-team/ogdi-dfsg
+Vcs-Git: https://salsa.debian.org/debian-gis-team/ogdi-dfsg.git
+Homepage: http://ogdi.sourceforge.net/
+
+Package: libogdi-dev
+Architecture: any
+Section: libdevel
+Depends: libogdi4.1 (= ${binary:Version}),
+         ${misc:Depends}
+Suggests: pkg-config
+Breaks: libogdi3.2-dev (<< 4.0.0)
+Replaces: libogdi3.2-dev (<< 4.0.0)
+Description: Open Geographic Datastore Interface Library -- development
+ OGDI is the Open Geographic Datastore Interface. OGDI is an application
+ programming interface (API) that uses  a standardized access methods to
+ work  in  conjunction  with  GIS software  packages  (the  application)
+ and  various  geospatial  data  products.  OGDI  uses  a  client/server
+ architecture  to  facilitate  the   dissemination  of  geospatial  data
+ products over  any TCP/IP  network, and  a driver-oriented  approach to
+ facilitate access to several geospatial data products/formats.
+ .
+ This package contains the development files to build OGDI enabled
+ programs.
+
+Package: libogdi4.1
+Architecture: any
+Depends: ${shlibs:Depends},
+         ${misc:Depends}
+Suggests: ogdi-bin
+Description: Open Geographic Datastore Interface Library -- library
+ OGDI is the Open Geographic Datastore Interface. OGDI is an application
+ programming interface (API) that uses  a standardized access methods to
+ work  in  conjunction  with  GIS software  packages  (the  application)
+ and  various  geospatial  data  products.  OGDI  uses  a  client/server
+ architecture  to  facilitate  the   dissemination  of  geospatial  data
+ products over  any TCP/IP  network, and  a driver-oriented  approach to
+ facilitate access to several geospatial data products/formats.
+ .
+ This package contains the run-time library used by client programs.
+
+Package: ogdi-bin
+Architecture: any
+Section: science
+Depends: ${shlibs:Depends},
+         ${misc:Depends}
+Description: Open Geographic Datastore Interface Library -- utilities
+ OGDI is the Open Geographic Datastore Interface. OGDI is an application
+ programming interface (API) that uses  a standardized access methods to
+ work  in  conjunction  with  GIS software  packages  (the  application)
+ and  various  geospatial  data  products.  OGDI  uses  a  client/server
+ architecture  to  facilitate  the   dissemination  of  geospatial  data
+ products over  any TCP/IP  network, and  a driver-oriented  approach to
+ facilitate access to several geospatial data products/formats.
+ .
+ This package contains some useful tools based on the OGDI library

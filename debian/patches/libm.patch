@@ -1,0 +1,27 @@
+Description: Link to libm for sincos/cos/acos.
+Author: Bas Couwenberg <sebastic@debian.org>
+Bug-Debian: https://bugs.debian.org/964241
+Forwarded: not-needed
+
+--- a/vpflib/makefile
++++ b/vpflib/makefile
+@@ -33,6 +33,8 @@ INCLUDES = $(CURRENT_INCLUDE) $(GENERAL_
+ CFLAGS 	= $(INCLUDES) $(COMMON_CFLAGS) $(UNIX_DEFINE) \
+ 	-DSYS_BIG_ENDIAN=$(BIG_ENDIAN)
+ 
++LINK_LIBS = $(MATH_LINKLIB)
++
+ include $(TOPDIR)/config/common.mak
+ 
+ ifeq ($(HAVE_ICONV),yes)
+--- a/config/unix.mak
++++ b/config/unix.mak
+@@ -73,7 +73,7 @@ SYSTEM_INCLUDE	= $(patsubst %,$(INCL_SW)
+ #
+ 
+ RPC_LINKLIB	=
+-MATH_LINKLIB	= $(LIB_SW)m
++MATH_LINKLIB	= -lm
+ DL_LINKLIB	= 
+ 
+ LIBC_LINKLIB	= -lc

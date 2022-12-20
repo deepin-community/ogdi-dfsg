@@ -1,0 +1,25 @@
+Description: Fix install-so-link target.
+ Disable mv commands, source and destination are the same file.
+ Disable ln command, symlink already created in default-install target.
+Author: Bas Couwenberg <sebastic@debian.org>
+Forwarded: not-needed
+
+--- a/config/common.mak.in
++++ b/config/common.mak.in
+@@ -258,11 +258,11 @@ default-install:
+ endif
+ 
+ install-so-link:
+-	mv -f $(INST_LIB)/$(LIB_PREFIX)$(TOBEGEN).$(SHLIB_EXT).$(OGDI_MAJOR).$(OGDI_MINOR) $(INST_LIB)
+-	mv -f $(INST_LIB)/$(LIB_PREFIX)$(TOBEGEN).$(SHLIB_EXT).$(OGDI_MAJOR) $(INST_LIB)
+-	cd $(INST_LIB); ln -s $(LIB_PREFIX)$(TOBEGEN).$(SHLIB_EXT).$(OGDI_MAJOR).$(OGDI_MINOR) \
+-	      $(LIB_PREFIX)$(TOBEGEN_STRIPPED).$(SHLIB_EXT) ; \
+-	cd $(CURDIR)
++	#mv -f $(INST_LIB)/$(LIB_PREFIX)$(TOBEGEN).$(SHLIB_EXT).$(OGDI_MAJOR).$(OGDI_MINOR) $(INST_LIB)
++	#mv -f $(INST_LIB)/$(LIB_PREFIX)$(TOBEGEN).$(SHLIB_EXT).$(OGDI_MAJOR) $(INST_LIB)
++	#cd $(INST_LIB); ln -s $(LIB_PREFIX)$(TOBEGEN).$(SHLIB_EXT).$(OGDI_MAJOR).$(OGDI_MINOR) \
++	#      $(LIB_PREFIX)$(TOBEGEN_STRIPPED).$(SHLIB_EXT) ; \
++	#cd $(CURDIR)
+ 
+ install:	default-install $(EXTRA_INSTALL_TARGETS)
+ 

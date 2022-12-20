@@ -1,0 +1,334 @@
+ogdi-dfsg (4.1.0+ds-deepin1) unstable; urgency=medium
+
+  * Rebuild
+
+ -- Deepin Packages Builder <packages@deepin.org>  Fri, 11 Nov 2022 18:01:50 +0800
+
+ogdi-dfsg (4.1.0+ds-5) unstable; urgency=medium
+
+  * Team upload.
+  * Drop obsolete Breaks/Replaces on libogdi3.2. See: #989795.
+
+ -- Bas Couwenberg <sebastic@debian.org>  Mon, 14 Jun 2021 05:48:16 +0200
+
+ogdi-dfsg (4.1.0+ds-4) unstable; urgency=medium
+
+  * Team upload.
+  * Bump Standards-Version to 4.5.1, no changes.
+  * Mark patches as Applied-Upstream.
+  * Update watch file for GitHub URL changes.
+  * Use version specific modules path.
+    (closes: #989790)
+
+ -- Bas Couwenberg <sebastic@debian.org>  Sun, 13 Jun 2021 14:55:48 +0200
+
+ogdi-dfsg (4.1.0+ds-3) unstable; urgency=medium
+
+  * Team upload.
+  * Add patch to link libm in libvpf.
+    (closes: #964241)
+  * Bump watch file version to 4.
+  * Mark patches as Forwarded.
+
+ -- Bas Couwenberg <sebastic@debian.org>  Thu, 12 Nov 2020 06:04:54 +0100
+
+ogdi-dfsg (4.1.0+ds-2) unstable; urgency=medium
+
+  * Team upload.
+  * Bump Standards-Version to 4.5.0, no changes.
+  * Drop Name field from upstream metadata.
+  * Bump debhelper compat to 10, changes:
+    - Drop --parallel option, enabled by default
+    - Don't explicitly enable autoreconf, enabled by default
+    - Drop dh-autoreconf build dependency
+  * Add patch to not include package build path in MODULES_PATH.
+  * Update lintian overrides.
+
+ -- Bas Couwenberg <sebastic@debian.org>  Sat, 27 Jun 2020 20:20:52 +0200
+
+ogdi-dfsg (4.1.0+ds-1) unstable; urgency=medium
+
+  * Team upload.
+  * Update gbp.conf to use --source-only-changes by default.
+  * Move from experimental to unstable.
+
+ -- Bas Couwenberg <sebastic@debian.org>  Sun, 07 Jul 2019 13:25:07 +0200
+
+ogdi-dfsg (4.1.0+ds-1~exp1) experimental; urgency=medium
+
+  * Team upload.
+  * New upstream release.
+  * Also exclude win32 files from repacked upstream tarball.
+  * Drop license & copyright for ecshash.c & ecsregex.c, removed upstream.
+  * Refresh patches.
+  * Fix package name in symbols Build-Depends-Package field.
+  * Rename library package for SONAME bump.
+  * Update symbols for 4.1.0.
+
+ -- Bas Couwenberg <sebastic@debian.org>  Sat, 20 Apr 2019 14:09:37 +0200
+
+ogdi-dfsg (4.0.0+ds-1~exp4) experimental; urgency=medium
+
+  * Team upload.
+  * Add Breaks/Replaces for libogdi3.2 to libogdi4.0.
+
+ -- Bas Couwenberg <sebastic@debian.org>  Thu, 18 Apr 2019 07:22:25 +0200
+
+ogdi-dfsg (4.0.0+ds-1~exp3) experimental; urgency=medium
+
+  * Team upload.
+  * Drop SOVERSION from -dev packages.
+
+ -- Bas Couwenberg <sebastic@debian.org>  Sat, 13 Apr 2019 09:54:13 +0200
+
+ogdi-dfsg (4.0.0+ds-1~exp2) experimental; urgency=medium
+
+  * Team upload.
+  * Add license terms for ecshash.
+
+ -- Bas Couwenberg <sebastic@debian.org>  Mon, 01 Apr 2019 21:11:44 +0200
+
+ogdi-dfsg (4.0.0+ds-1~exp1) experimental; urgency=medium
+
+  * Team upload.
+  * New upstream release.
+
+ -- Bas Couwenberg <sebastic@debian.org>  Mon, 11 Mar 2019 12:39:38 +0100
+
+ogdi-dfsg (4.0.0~rc1+ds-1~exp1) experimental; urgency=medium
+
+  * Team upload.
+  * New upstream release candidate.
+  * Bump Standards-Version to 4.3.0, no changes.
+  * Update watch file to limit matches to archive path.
+  * Add Build-Depends-Package field to symbols file.
+  * Update copyright file, changes:
+    - Update Files-Excluded to not remove proj/*, files removed upstream.
+    - Drop ogdi/datum_driver/makefile, file removed upstream.
+  * Drop cross.patch, applied upstream. Refresh remaining patches.
+  * Drop proj related configure options.
+  * Drop proj (build) dependencies.
+  * Add pkg-config to build dependencies.
+  * Rename library packages for SONAME bump.
+  * Append -DNDEBUG to CFLAGS to remove buildpath from binaries.
+  * Update symbols for 4.0.0~rc1.
+  * Drop unused hardening-no-fortify-functions override.
+  * Add lintian override for file-references-package-build-path.
+
+ -- Bas Couwenberg <sebastic@debian.org>  Fri, 01 Mar 2019 16:51:43 +0100
+
+ogdi-dfsg (3.2.1+ds-4) unstable; urgency=medium
+
+  * Team upload.
+  * Also link libm for cos() and related functions.
+    (closes: #903683)
+  * Drop autopkgtest to test installability.
+  * Add lintian override for testsuite-autopkgtest-missing.
+
+ -- Bas Couwenberg <sebastic@debian.org>  Wed, 01 Aug 2018 08:32:41 +0200
+
+ogdi-dfsg (3.2.1+ds-3) unstable; urgency=medium
+
+  * Team upload.
+  * Bump Standards-Version to 4.1.5, no changes.
+  * Apply patch by Chris Lamb to make the build mostly reproducible.
+    (closes: #903442)
+  * Fix patch to also strip debian/tmp from libdir path.
+
+ -- Bas Couwenberg <sebastic@debian.org>  Tue, 10 Jul 2018 09:18:04 +0200
+
+ogdi-dfsg (3.2.1+ds-2) unstable; urgency=medium
+
+  * Team upload.
+  * Update Vcs-* URLs for Salsa.
+  * Bump Standards-Version to 4.1.4, no changes.
+  * Strip trailing whitespace from changelog & rules files.
+  * Add patch by Helmut Grohne to fix FTCBFS.
+    (closes: #902033)
+
+ -- Bas Couwenberg <sebastic@debian.org>  Thu, 21 Jun 2018 21:26:54 +0200
+
+ogdi-dfsg (3.2.1+ds-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release.
+  * Change priority from extra to optional.
+  * Bump Standards-Version to 4.1.3, changes: priority.
+  * Use pkg-info.mk variables instead of dpkg-parsechangelog output.
+  * Add autopkgtest to test installability.
+  * Strip trailing whitespace from changelog & control files.
+  * Update copyright-format URL to use HTTPS.
+  * Fix spelling error in patch description.
+  * Update watch file for GitHub releases.
+  * Add upstream metadata.
+
+ -- Bas Couwenberg <sebastic@debian.org>  Thu, 01 Mar 2018 19:20:58 +0100
+
+ogdi-dfsg (3.2.0+ds-2) unstable; urgency=medium
+
+  * Team upload.
+  * Enable PIE hardening buildflags.
+    (closes: #859433)
+  * Drop unused lintian overrides for hardening-no-pie.
+
+ -- Bas Couwenberg <sebastic@debian.org>  Mon, 03 Apr 2017 15:36:52 +0200
+
+ogdi-dfsg (3.2.0+ds-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release.
+  * Exclude embedded copies of 3rd party code from repacked upstream tarball.
+  * Drop new_nad_init patch, fixed upstream. Refresh remaining patches.
+  * Fix upstream version extraction from changelog.
+  * Update symbols for 3.2.0.
+
+ -- Bas Couwenberg <sebastic@debian.org>  Tue, 19 Jul 2016 15:57:40 +0200
+
+ogdi-dfsg (3.2.0~beta2-9) unstable; urgency=medium
+
+  * Team upload.
+  * Update watch file to handle common issues.
+  * Bump Standards-Version to 3.9.8, no changes.
+
+ -- Bas Couwenberg <sebastic@debian.org>  Thu, 05 May 2016 18:27:20 +0200
+
+ogdi-dfsg (3.2.0~beta2-8) unstable; urgency=medium
+
+  * Team upload.
+
+  [ Francesco Paolo Lovergine ]
+  * Moved to git and updated Vcs-* fields in debian/control.
+  * Adopted source format 3.0.
+  * Policy bumped to 3.9.2.
+  * Debhelper level set to 8.
+  * Patchset moved to quilt and dropped dpatch support.
+
+  [ Bas Couwenberg ]
+  * Add gbp.conf to use pristine-tar by default.
+  * Add DEP3 patch headers using dpatch descriptions.
+  * Restructure control file with cme, changes:
+    - Use canonical Vcs-* URLs over HTTPS
+  * Bump debhelper compatibility to 9.
+  * Use minimal dh rules with autoreconf.
+  * Don't treat format-security as an error, causes build failure.
+  * Enable all hardening buildflags, except PIE (causes build failure).
+  * Enable parallel builds.
+  * Add symbols file for libogdi3.2.
+  * Add patch to fix spelling errors.
+  * Update copyright file using copyright-format 1.0.
+  * Bump Standards-Version to 3.9.7, changes: copyright-format 1.0,
+    canonical Vcs-* URLs, mandatory targets in debian/rules.
+  * Add patch to fix install-so-link target.
+
+ -- Bas Couwenberg <sebastic@debian.org>  Sun, 03 Apr 2016 01:12:27 +0200
+
+ogdi-dfsg (3.2.0~beta2-7.1) unstable; urgency=medium
+
+  * Non-maintainer upload to fix FTBFS
+  * Added debian/patches/new_nad_init.dpatch to modify nad_init call,
+    based on patch submitted by Matthias Klose <doko@ubuntu.com>.
+    (Closes: #733387)
+
+ -- Margarita Manterola <marga@debian.org>  Fri, 25 Apr 2014 22:10:54 +0200
+
+ogdi-dfsg (3.2.0~beta2-7) unstable; urgency=low
+
+  * Fixed tcl.h path to use the default Tcl version.
+    (closes: #618130)
+
+ -- Francesco Paolo Lovergine <frankie@debian.org>  Thu, 12 May 2011 20:44:48 +0200
+
+ogdi-dfsg (3.2.0~beta2-6) unstable; urgency=low
+
+  [ David Paleino ]
+  * debian/patches/hurd.dpatch updated, set the target to "Linux"
+    also on Hurd systems (Closes: #568740)
+  * Fix lintian warnings:
+    - binary-control-field-duplicates-source
+    - debhelper-but-no-misc-depends
+    - dpatch-missing-description
+    - patch-system-but-no-source-readme (debian/README.source added)
+  * Standards-Version bumped to 3.8.4, no changes needed
+  * debian/copyright:
+    - updated to comply with DEP-5
+    - added some missing information
+
+  [ Francesco Paolo Lovergine ]
+  * Fixed long description for a minor english error.
+
+ -- Francesco Paolo Lovergine <frankie@debian.org>  Sun, 28 Feb 2010 15:57:49 +0100
+
+ogdi-dfsg (3.2.0~beta2-5) unstable; urgency=low
+
+  * [PATCH] Added hurd.dpatch to support GNU/Hurd. Thanks Barry deFreese.
+    (closes: #534093)
+  * Policy set to 3.8.3, no changes.
+  * Removed stamp file cleaning, because it is now automatically done.
+  * Better debian/watch file.
+
+ -- Francesco Paolo Lovergine <frankie@debian.org>  Wed, 16 Sep 2009 13:15:44 +0200
+
+ogdi-dfsg (3.2.0~beta2-4) unstable; urgency=high
+
+  * Now -dev package depends on libproj-dev because it requires proj headers.
+    (closes: #527685, #526531)
+
+ -- Francesco Paolo Lovergine <frankie@debian.org>  Sat, 09 May 2009 10:36:28 +0200
+
+ogdi-dfsg (3.2.0~beta2-3) unstable; urgency=high
+
+  * Updated build-dep: proj -> libproj-dev.
+  * Added a Replaces against libogdi3.2 << 3.2.0~beta2-2, due to
+    previous link moving.
+    (closes: #524656)
+
+ -- Francesco Paolo Lovergine <frankie@debian.org>  Mon, 30 Mar 2009 11:59:38 +0200
+
+ogdi-dfsg (3.2.0~beta2-2) unstable; urgency=low
+
+  * Fixed typo in homepage for debian/control.
+  * Updated watch file to use sf redirector.
+  * Reverted change to proj buil-dep until accepted change.
+    (closes: #520187)
+  * Install ogdi.pc without x mode.
+  * lib*.so links moved to -dev package.
+  * Policy bumped to 3.8.1. No changes.
+
+ -- Francesco Paolo Lovergine <frankie@debian.org>  Sat, 21 Mar 2009 10:59:38 +0100
+
+ogdi-dfsg (3.2.0~beta2-1) unstable; urgency=low
+
+  * New upstream release and ack NMU patches merged upstream.
+    (closes: #448735, #459109, #470036)
+  * Added Homepage field in debian/control.
+    Both patches already merged upstream.
+  * Moved to tcl-dev build-dep as by Tcl/Tk policy.
+  * Policy bumped to 3.8.0.
+  * Updated config.guess and config.sub.
+  * Added Vcs-* fields.
+  * Updated debian/control to use ${binary:Version}.
+  * Debhelper level set to 7.
+  * Updated proj dependency.
+
+ -- Francesco Paolo Lovergine <frankie@debian.org>  Thu, 12 Mar 2009 20:56:26 +0100
+
+ogdi-dfsg (3.2.0~beta1-3) unstable; urgency=low
+
+  * Changed shared.dpatch to add -fPIC flag whenever required. This is due to
+    some internal misbehave of the building scripts.
+    (closes: #420527)
+
+ -- Francesco Paolo Lovergine <frankie@debian.org>  Mon, 30 Apr 2007 15:09:05 +0200
+
+ogdi-dfsg (3.2.0~beta1-2) unstable; urgency=low
+
+  * Changed shared.dpatch to add soname to libvpf.so
+  * Now libvpf is installed under /usr/lib to allow recursive linking for plugin solibs
+
+ -- Francesco Paolo Lovergine <frankie@debian.org>  Mon,  9 Apr 2007 00:33:31 +0200
+
+ogdi-dfsg (3.2.0~beta1-1) unstable; urgency=low
+
+  * Initial release (closes: #413842).
+
+ -- Francesco Paolo Lovergine <frankie@debian.org>  Tue, 27 Mar 2007 13:27:45 +0200
